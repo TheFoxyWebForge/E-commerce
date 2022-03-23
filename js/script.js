@@ -1,60 +1,47 @@
-// some scripts
-
-// jquery ready start
 $(document).ready(function() {
-	// jQuery code
+    $('#autoWidth').lightSlider({
+        autoWidth:true,
+        loop:true,
+        onSliderLoad: function() {
+            $('#autoWidth').removeClass('cS-hidden');
+        } 
+    });  
+  });
 
 
-    /* ///////////////////////////////////////
-
-    THESE FOLLOWING SCRIPTS ONLY FOR BASIC USAGE, 
-    For sliders, interactions and other
-
-    */ ///////////////////////////////////////
-    
-
-	//////////////////////// Prevent closing from click inside dropdown
-    $(document).on('click', '.dropdown-menu', function (e) {
-      e.stopPropagation();
-    });
+  const bar=document.getElementById('bar');
+const close=document.getElementById('close');
+const nav=document.getElementById('navbar');
 
 
-    $('.js-check :radio').change(function () {
-        var check_attr_name = $(this).attr('name');
-        if ($(this).is(':checked')) {
-            $('input[name='+ check_attr_name +']').closest('.js-check').removeClass('active');
-            $(this).closest('.js-check').addClass('active');
-           // item.find('.radio').find('span').text('Add');
-
-        } else {
-            item.removeClass('active');
-            // item.find('.radio').find('span').text('Unselect');
-        }
-    });
+if(bar){
+ bar.addEventListener('click',()=> {
+     nav.classList.add('active');
+ })   
+}
 
 
-    $('.js-check :checkbox').change(function () {
-        var check_attr_name = $(this).attr('name');
-        if ($(this).is(':checked')) {
-            $(this).closest('.js-check').addClass('active');
-           // item.find('.radio').find('span').text('Add');
-        } else {
-            $(this).closest('.js-check').removeClass('active');
-            // item.find('.radio').find('span').text('Unselect');
-        }
-    });
-
-
-
-	//////////////////////// Bootstrap tooltip
-	if($('[data-toggle="tooltip"]').length>0) {  // check if element exists
-		$('[data-toggle="tooltip"]').tooltip()
-	} // end if
+if(close){
+    close.addEventListener('click',()=> {
+        nav.classList.remove('active');
+    })   
+   }
 
 
 
 
-    
-}); 
-// jquery end
-
+	var myIndex = 0;
+	carousel();
+	
+	function carousel() {
+	  var i;
+	  var x = document.getElementsByClassName("mySlides");
+	  for (i = 0; i < x.length; i++) {
+		x[i].style.display = "none";  
+	  }
+	  myIndex++;
+	  if (myIndex > x.length) {myIndex = 1}    
+	  x[myIndex-1].style.display = "block";  
+	  setTimeout(carousel, 2000); 
+	}
+	
